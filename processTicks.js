@@ -2,11 +2,18 @@
 const {getCSVContentAsArray} = require(`./lib/readCSV.js`);
 
 const readTicks = async (filename) => {
-    console.log(`Hello world!`);
     const arr = await getCSVContentAsArray(filename);
-    console.log(`Printing csv results:`);
-    console.log(JSON.stringify(arr));
+    return arr;
 }
 
-const blah = readTicks(`sample.csv`);
-console.log(`done`);
+readTicks(`sample.csv`).then(result => {
+    // TODO further processing.
+    try {
+        console.log(result);
+    } catch (e) {
+        console.log(e);
+    }
+    console.log(`done`);
+}).catch((err) => {
+    console.error("Error: ", err);
+});
